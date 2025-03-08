@@ -44,17 +44,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .permitAll()
-                )
-                .logout(LogoutConfigurer::permitAll)
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                        .requestMatchers("/auth", "/", "/home").permitAll()
+                        .anyRequest().permitAll()
                 );
+//                .formLogin((form) -> form
+//                        .loginPage("/login")
+//                        .permitAll()
+//                )
+//                .logout(LogoutConfigurer::permitAll)
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                );
 
 
         return http.build();
